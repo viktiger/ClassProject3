@@ -6,8 +6,6 @@
 	height: 400px; 
 }
 
-
-
 #lineChart {    
 	position:absolute;
 	top:10px;
@@ -22,29 +20,36 @@
 	height: 250px;
 }
 
+#BarLineChart {
+	position:absolute;
+	top:500px;
+	left:10px;
+	height: 250px;
+}
+
 .slice {
    font-size: 12pt;
    font-family: Verdana;
-   fill: white; //svg specific - instead of color
+   fill: white; 
    font-weight: bold;	
   		} 
-
+		  /* //////svg specific - instead of color */
 /*for line chart*/
 .axis path, .axis line {
     fill: none;
     stroke: black;
-    shape-rendering: crispEdges; //The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect. 
+    shape-rendering: crispEdges; /*The shape-rendering property is an SVG attribute, used here to make sure our axis and its tick mark lines are pixel-perfect.*/
 }
 
 .line {
   fill: none;
-  /*stroke: steelblue;*/
+  stroke: steelblue;
   stroke-width: 3px;
 }
 
 .dot {
-  /*fill: white;*/
-  /*stroke: steelblue;*/
+  fill: white;
+  stroke: steelblue;
   stroke-width: 1.5px;
   }
 				

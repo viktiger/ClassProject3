@@ -1,48 +1,33 @@
-/*
-################ FORMATS ##################
--------------------------------------------
-*/
 
+var color_pie = ["#DC8665","#35BBCA","#534666","#758EB7","#CD7672","#EEB462","#C2C8C5"]
 
+// formating
 var 	formatAsPercentage = d3.format("%"),
 		formatAsPercentage1Dec = d3.format(".1%"),
-		formatAsInteger = d3.format(","),
-		fsec = d3.time.format("%S s"),
-		fmin = d3.time.format("%M m"),
-		fhou = d3.time.format("%H h"),
-		fwee = d3.time.format("%a"),
-		fdat = d3.time.format("%d d"),
-		fmon = d3.time.format("%b")
-		;
-
-/*
-############# PIE CHART ###################
--------------------------------------------
-*/
+		formatAsInteger = d3.format(",");
 
 
-
+// Pie selector with state name
 function dsPieChart(){
-
 	var dataset = [
-			{category: "Sam", measure: 0.30},
-	      {category: "Peter", measure: 0.25},
-	      {category: "John", measure: 0.15},
-	      {category: "Rick", measure: 0.05},
-	      {category: "Lenny", measure: 0.18},
-	      {category: "Paul", measure:0.04},
-	      {category: "Steve", measure: 0.03}
+		{states_name: "WA", percentage_number: 0.32868349},
+		{states_name: "QSL", percentage_number: 0.224984057},
+		{states_name: "NT", percentage_number: 0.17530446},
+		{states_name: "SA", percentage_number: 0.128028649},
+		{states_name: "NSW", percentage_number: 0.104203966},
+		{states_name: "VIC", percentage_number: 0.029583183},
+		{states_name: "TAS", percentage_number: 0.00889678}
 	      ]
 	      ;
 
-	var 	width = 400,
+	var    width = 400,
 		   height = 400,
 		   outerRadius = Math.min(width, height) / 2,
 		   innerRadius = outerRadius * .999,   
 		   // for animation
 		   innerRadiusFinal = outerRadius * .5,
 		   innerRadiusFinal3 = outerRadius* .45,
-		   color = d3.scale.category20()    //builtin range of colors
+		   color = d3.scale.ordinal().range(color_pie)    //builtin range of colors
 		   ;
 	    
 	var vis = d3.select("#pieChart")
@@ -62,7 +47,7 @@ function dsPieChart(){
 	var arcFinal3 = d3.svg.arc().innerRadius(innerRadiusFinal3).outerRadius(outerRadius);
 
    var pie = d3.layout.pie()           //this will create arc data for us given a list of values
-        .value(function(d) { return d.measure; });    //we must tell it out to access the value of each element in our data array
+        .value(function(d) { return d.percentage_number; });    //we must tell it out to access the value of each element in our data array
 
    var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
         .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
@@ -78,7 +63,7 @@ function dsPieChart(){
                .attr("fill", function(d, i) { return color(i); } ) //set the color for each slice to be chosen from the color function defined above
                .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
 					.append("svg:title") //mouseover title showing the figures
-				   .text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });			
+				   .text(function(d) { return d.data.states_name + ": " + formatAsPercentage(d.data.percentage_number); });			
 
         d3.selectAll("g.slice").selectAll("path").transition()
 			    .duration(750)
@@ -87,14 +72,13 @@ function dsPieChart(){
 			    ;
 	
 	  // Add a label to the larger arcs, translated to the arc centroid and rotated.
-	  // source: http://bl.ocks.org/1305337#index.html
 	  arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; })
 	  		.append("svg:text")
 	      .attr("dy", ".35em")
 	      .attr("text-anchor", "middle")
 	      .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	      //.text(function(d) { return formatAsPercentage(d.value); })
-	      .text(function(d) { return d.data.category; })
+	      .text(function(d) { return d.data.states_name; })
 	      ;
 	   
 	   // Computes the label angle of an arc, converting from radians to degrees.
@@ -106,12 +90,11 @@ function dsPieChart(){
 		
 		// Pie chart title			
 		vis.append("svg:text")
-	     	.attr("dy", ".35em")
-	      .attr("text-anchor", "middle")
-	      .text("Revenue Share 2012")
-	      .attr("class","title")
-	      ;		    
-
+			.attr("dy", ".35em")
+			.attr("text-anchor", "middle")
+			.text("States in Australia")
+			.attr("class","title")
+			;		   
 
 		
 	function mouseover() {
@@ -136,8 +119,8 @@ function dsPieChart(){
 	
 				/* update bar chart when user selects piece of the pie chart */
 				//updateBarChart(dataset[i].category);
-				updateBarChart(d.data.category, color(i));
-				updateLineChart(d.data.category, color(i));
+				updateBarChart(d.data.states_name, color(i));
+				updateLineChart(d.data.states_name, color(i));
 			 
 	}
 }
@@ -157,41 +140,41 @@ var datasetBarChart = [
 { group: "All", category: "Grapes", measure: 60610.2355 }, 
 { group: "All", category: "Figs", measure: 30493.1686 }, 
 { group: "All", category: "Mangos", measure: 56097.0151 }, 
-{ group: "Sam", category: "Oranges", measure: 19441.5648 }, 
-{ group: "Sam", category: "Apples", measure: 25922.0864 }, 
-{ group: "Sam", category: "Grapes", measure: 9720.7824 }, 
-{ group: "Sam", category: "Figs", measure: 6480.5216 }, 
-{ group: "Sam", category: "Mangos", measure: 19441.5648 }, 
-{ group: "Peter", category: "Oranges", measure: 22913.2728 }, 
-{ group: "Peter", category: "Apples", measure: 7637.7576 }, 
-{ group: "Peter", category: "Grapes", measure: 23549.7526 }, 
-{ group: "Peter", category: "Figs", measure: 1909.4394 }, 
-{ group: "Peter", category: "Mangos", measure: 7637.7576 }, 
-{ group: "John", category: "Oranges", measure: 1041.5124 }, 
-{ group: "John", category: "Apples", measure: 2430.1956 }, 
-{ group: "John", category: "Grapes", measure: 15275.5152 }, 
-{ group: "John", category: "Figs", measure: 4166.0496 }, 
-{ group: "John", category: "Mangos", measure: 11803.8072 }, 
-{ group: "Rick", category: "Oranges", measure: 7406.3104 }, 
-{ group: "Rick", category: "Apples", measure: 2545.9192 }, 
-{ group: "Rick", category: "Grapes", measure: 1620.1304 }, 
-{ group: "Rick", category: "Figs", measure: 8563.5464 }, 
-{ group: "Rick", category: "Mangos", measure: 3008.8136 }, 
-{ group: "Lenny", category: "Oranges", measure: 7637.7576 }, 
-{ group: "Lenny", category: "Apples", measure: 35411.4216 }, 
-{ group: "Lenny", category: "Grapes", measure: 8332.0992 }, 
-{ group: "Lenny", category: "Figs", measure: 6249.0744 }, 
-{ group: "Lenny", category: "Mangos", measure: 11803.8072 }, 
-{ group: "Paul", category: "Oranges", measure: 3182.399 }, 
-{ group: "Paul", category: "Apples", measure: 867.927 }, 
-{ group: "Paul", category: "Grapes", measure: 1808.18125 }, 
-{ group: "Paul", category: "Figs", measure: 795.59975 }, 
-{ group: "Paul", category: "Mangos", measure: 578.618 }, 
-{ group: "Steve", category: "Oranges", measure: 2227.6793 }, 
-{ group: "Steve", category: "Apples", measure: 3442.7771 }, 
-{ group: "Steve", category: "Grapes", measure: 303.77445 }, 
-{ group: "Steve", category: "Figs", measure: 2328.93745 }, 
-{ group: "Steve", category: "Mangos", measure: 1822.6467 }, 
+{ group: "WA", category: "Oranges", measure: 19441.5648 }, 
+{ group: "WA", category: "Apples", measure: 25922.0864 }, 
+{ group: "WA", category: "Grapes", measure: 9720.7824 }, 
+{ group: "WA", category: "Figs", measure: 6480.5216 }, 
+{ group: "WA", category: "Mangos", measure: 19441.5648 }, 
+{ group: "QSL", category: "Oranges", measure: 22913.2728 }, 
+{ group: "QSL", category: "Apples", measure: 7637.7576 }, 
+{ group: "QSL", category: "Grapes", measure: 23549.7526 }, 
+{ group: "QSL", category: "Figs", measure: 1909.4394 }, 
+{ group: "QSL", category: "Mangos", measure: 7637.7576 }, 
+{ group: "NT", category: "Oranges", measure: 1041.5124 }, 
+{ group: "NT", category: "Apples", measure: 2430.1956 }, 
+{ group: "NT", category: "Grapes", measure: 15275.5152 }, 
+{ group: "NT", category: "Figs", measure: 4166.0496 }, 
+{ group: "NT", category: "Mangos", measure: 11803.8072 }, 
+{ group: "SA", category: "Oranges", measure: 7406.3104 }, 
+{ group: "SA", category: "Apples", measure: 2545.9192 }, 
+{ group: "SA", category: "Grapes", measure: 1620.1304 }, 
+{ group: "SA", category: "Figs", measure: 8563.5464 }, 
+{ group: "SA", category: "Mangos", measure: 3008.8136 }, 
+{ group: "NSW", category: "Oranges", measure: 7637.7576 }, 
+{ group: "NSW", category: "Apples", measure: 35411.4216 }, 
+{ group: "NSW", category: "Grapes", measure: 8332.0992 }, 
+{ group: "NSW", category: "Figs", measure: 6249.0744 }, 
+{ group: "NSW", category: "Mangos", measure: 11803.8072 }, 
+{ group: "VIC", category: "Oranges", measure: 3182.399 }, 
+{ group: "VIC", category: "Apples", measure: 867.927 }, 
+{ group: "VIC", category: "Grapes", measure: 1808.18125 }, 
+{ group: "VIC", category: "Figs", measure: 795.59975 }, 
+{ group: "VIC", category: "Mangos", measure: 578.618 }, 
+{ group: "TAS", category: "Oranges", measure: 2227.6793 }, 
+{ group: "TAS", category: "Apples", measure: 3442.7771 }, 
+{ group: "TAS", category: "Grapes", measure: 303.77445 }, 
+{ group: "TAS", category: "Figs", measure: 2328.93745 }, 
+{ group: "TAS", category: "Mangos", measure: 1822.6467 }, 
 ]
 ;
 
@@ -211,21 +194,21 @@ function datasetBarChosen(group) {
 
 function dsBarChartBasics() {
 
-		var margin = {top: 30, right: 5, bottom: 20, left: 50},
-		width = 500 - margin.left - margin.right,
-	   height = 250 - margin.top - margin.bottom,
-		colorBar = d3.scale.category20(),
-		barPadding = 1
-		;
+	var margin = {top: 30, right: 5, bottom: 20, left: 50},
+	width = 500 - margin.left - margin.right,
+	height = 250 - margin.top - margin.bottom,
+	colorBar = [d3.scale.category20()],
+	barPadding = 1
+	;
 		
-		return {
-			margin : margin, 
-			width : width, 
-			height : height, 
-			colorBar : colorBar, 
-			barPadding : barPadding
-		}			
-		;
+	return {
+		margin : margin, 
+		width : width, 
+		height : height, 
+		colorBar : colorBar, 
+		barPadding : barPadding
+	}			
+	;
 }
 
 function dsBarChart() {
@@ -442,41 +425,46 @@ var datasetLineChart = [
 { group: "All", category: 2010, measure: 310900 }, 
 { group: "All", category: 2011, measure: 223900 }, 
 { group: "All", category: 2012, measure: 234500 }, 
-{ group: "Sam", category: 2008, measure: 81006.52 }, 
-{ group: "Sam", category: 2009, measure: 70499.4 }, 
-{ group: "Sam", category: 2010, measure: 96379 }, 
-{ group: "Sam", category: 2011, measure: 64931 }, 
-{ group: "Sam", category: 2012, measure: 70350 }, 
-{ group: "Peter", category: 2008, measure: 63647.98 }, 
-{ group: "Peter", category: 2009, measure: 61099.48 }, 
-{ group: "Peter", category: 2010, measure: 87052 }, 
-{ group: "Peter", category: 2011, measure: 58214 }, 
-{ group: "Peter", category: 2012, measure: 58625 }, 
-{ group: "Rick", category: 2008, measure: 23144.72 }, 
-{ group: "Rick", category: 2009, measure: 14099.88 }, 
-{ group: "Rick", category: 2010, measure: 15545 }, 
-{ group: "Rick", category: 2011, measure: 11195 }, 
-{ group: "Rick", category: 2012, measure: 11725 }, 
-{ group: "John", category: 2008, measure: 34717.08 }, 
-{ group: "John", category: 2009, measure: 30549.74 }, 
-{ group: "John", category: 2010, measure: 34199 }, 
-{ group: "John", category: 2011, measure: 33585 }, 
-{ group: "John", category: 2012, measure: 35175 }, 
-{ group: "Lenny", category: 2008, measure: 69434.16 }, 
-{ group: "Lenny", category: 2009, measure: 46999.6 }, 
-{ group: "Lenny", category: 2010, measure: 62180 }, 
-{ group: "Lenny", category: 2011, measure: 40302 }, 
-{ group: "Lenny", category: 2012, measure: 42210 }, 
-{ group: "Paul", category: 2008, measure: 7232.725 }, 
-{ group: "Paul", category: 2009, measure: 4699.96 }, 
-{ group: "Paul", category: 2010, measure: 6218 }, 
-{ group: "Paul", category: 2011, measure: 8956 }, 
-{ group: "Paul", category: 2012, measure: 9380 }, 
-{ group: "Steve", category: 2008, measure: 10125.815 }, 
-{ group: "Steve", category: 2009, measure: 7049.94 }, 
-{ group: "Steve", category: 2010, measure: 9327 }, 
-{ group: "Steve", category: 2011, measure: 6717 }, 
-{ group: "Steve", category: 2012, measure: 7035 }
+{ group: "WA", category: 2008, measure: 81006.52 }, 
+{ group: "WA", category: 2009, measure: 70499.4 }, 
+{ group: "WA", category: 2010, measure: 96379 }, 
+{ group: "WA", category: 2011, measure: 64931 }, 
+{ group: "WA", category: 2012, measure: 70350 }, 
+{ group: "QSL", category: 2008, measure: 63647.98 }, 
+{ group: "QSL", category: 2009, measure: 61099.48 }, 
+{ group: "QSL", category: 2010, measure: 87052 }, 
+{ group: "QSL", category: 2011, measure: 58214 }, 
+{ group: "QSL", category: 2012, measure: 58625 }, 
+{ group: "SA", category: 2008, measure: 23144.72 }, 
+{ group: "SA", category: 2009, measure: 14099.88 }, 
+{ group: "SA", category: 2010, measure: 15545 }, 
+{ group: "SA", category: 2011, measure: 11195 }, 
+{ group: "SA", category: 2012, measure: 11725 }, 
+{ group: "NT", category: 2008, measure: 34717.08 }, 
+{ group: "NT", category: 2009, measure: 30549.74 }, 
+{ group: "NT", category: 2010, measure: 34199 }, 
+{ group: "NT", category: 2011, measure: 33585 }, 
+{ group: "NT", category: 2012, measure: 35175 }, 
+{ group: "NSW", category: 2008, measure: 69434.16 }, 
+{ group: "NSW", category: 2009, measure: 46999.6 }, 
+{ group: "NSW", category: 2010, measure: 62180 }, 
+{ group: "NSW", category: 2011, measure: 40302 }, 
+{ group: "NSW", category: 2012, measure: 42210 }, 
+{ group: "VIC", category: 2008, measure: 7232.725 }, 
+{ group: "VIC", category: 2009, measure: 4699.96 }, 
+{ group: "VIC", category: 2010, measure: 6218 }, 
+{ group: "VIC", category: 2011, measure: 8956 }, 
+{ group: "VIC", category: 2012, measure: 9380 }, 
+{ group: "TAS", category: 2008, measure: 10125.815 }, 
+{ group: "TAS", category: 2009, measure: 7049.94 }, 
+{ group: "TAS", category: 2010, measure: 9327 }, 
+{ group: "TAS", category: 2011, measure: 6717 }, 
+{ group: "TAS", category: 2012, measure: 7035 },
+{ group: "ACT", category: 2008, measure: 9125.815 }, 
+{ group: "ACT", category: 2009, measure: 5049.94 }, 
+{ group: "ACT", category: 2010, measure: 6327 }, 
+{ group: "ACT", category: 2011, measure: 8717 }, 
+{ group: "ACT", category: 2012, measure: 3035 }
 ]
 ;
 
@@ -616,7 +604,7 @@ function updateLineChart(group, colorChosen) {
 	    .domain([0, d3.max(currentDatasetLineChart, function(d) { return d.measure; })])
 	    .range([height, 0])
 	    ;
-	
+	// Line on the top of the total value
 	var line = d3.svg.line()
     .x(function(d, i) { return xScale(i); })
     .y(function(d) { return yScale(d.measure); })
