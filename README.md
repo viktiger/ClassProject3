@@ -25,20 +25,15 @@ Data is derived from the Australian Beuro Statistic dataset in order to illustra
 (2e) assets/js/.eslintrc.json\
 (2f) assets/js/app.js
 
-## **Project Description & Background:**
-Lorem Ipsum.
-\
-Dataset: Lorem Ipsum.
-
 ## Approach
 1. Identify data sources and dependencies
 2. Collect and clean trajectory data
-3. Join 3 datasets on personal income, motor vehicle registration, car's age
-4. Load data in PostgreSQL using SQLAlchemy
-5. Create Flask App and connect routes to PostgreSQL
+3. Join 6 datasets on personal income, total volume of motor vehicle registration by state, motor vehicle's age by state, total volume of motor vehicle registration by brand, Population by state, Size by state in comparison to whole Australia.
+4. Load data in MongoDB
+5. Create Flask App and connect routes to MongoDB local host
 6. Create charts and map using Javascript libraries
-7. Customize html for final application
-8. Visualize dashboard locally or in Heroku
+7. Customise html for final application
+8. Visualise dashboard locally or in Heroku
 
 ## **Project Charter:**
 (1) Display script from repository\
