@@ -1,8 +1,13 @@
-# ClassProject3
+# Project 3 no wait 2 or maybe it's 3!
+
 
 ![Alt Text](https://media.giphy.com/media/8mbkWu1aYQeXqxXq1H/giphy.gif)
 
 ## About this project:
+As an avid motorist and atypical professional questioner that like to ask "why? How? When? Who? What?" we came across the dataset from ABS for personal income in Australia within certain period of time. From there, we want to compare the number of motor vehicle registration, average age used (vehicle) by state, particular motor vehicle brand by each state in Australia, and in addition we also take consideration by the population for each state.. since you know not all state in Australia is as popular as NSW #TEAMNSW Little that we know, from random thought came to our mind, this project came along and now you can see the result in this page. We hope the readers find this as amusing as us. 
+
+Data is derived from the Australian Beuro Statistic dataset in order to illustrate the relationship between owning the motor vechicles and your average personal Income within the state. On the side notes, you can also see the data spans between January 2016 and 31 December 2021.
+
 
 ## **Project Parts:**
 (1) Background Images: \
