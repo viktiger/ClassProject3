@@ -77,7 +77,7 @@ function makeGraphs_2(error, projectsJson, statesJson) {
     // labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
-        label: "State",
+        label: "Sexy State is Not Victoria",
         data: incomeDataOfAllState["Victoria"],
         backgroundColor: ["rgba(255, 26, 104, 0.2)"],
         borderColor: ["rgba(255, 26, 104, 1)"],
@@ -85,7 +85,7 @@ function makeGraphs_2(error, projectsJson, statesJson) {
       },
       {
         type: "line",
-        label: "Total Australis",
+        label: "Total Australia",
         data: incomeDataOfAllState["Total Australia"],
         fill: false,
         borderColor: "rgb(54, 162, 235)",

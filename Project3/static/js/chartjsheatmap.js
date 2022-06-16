@@ -44,8 +44,7 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
   var myColor = d3.scaleLinear().range(["white", "#0c6e57"]).domain([1, 100]);
 
   // create a tooltip
-  var tooltip = d3
-    .select("#heatmap")
+  var tooltip = d3.select("#heatmap")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
