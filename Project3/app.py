@@ -5,10 +5,10 @@ from flask import render_template
 from bson import json_util
 import pandas
 import json
-# #Specify string names inside '' for following variables 
+# #Specify string names inside '' for following variables
 # MONGODB_HOST = 'localhost'
 # DBS_NAME = 'VehiclesOnRegister_db'
-# COLLECTION_NAME = 'RegisterAgebyState_collection' 
+# COLLECTION_NAME = 'RegisterAgebyState_collection'
 # #Specify numerical variable (default used)
 # MONGODB_PORT = 27017
 # connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
@@ -28,7 +28,7 @@ def index():
 def donorschoose_projects():
     connection = MongoClient('localhost', 27017)
     collection = connection['VehiclesOnRegister_db']['RegisterAgebyState_collection']
-    projects = collection.find(projection={'report_year': True, 'states_name': True,'register_amount': True, 
+    projects = collection.find(projection={'report_year': True, 'states_name': True,'register_amount': True,
     'average_income': True,'population_number': True,'average_register': True,'age_used':True,
     'land_size':True,'_id': False}, limit=100000)
     #projects = collection.find(projection=FIELDS)
@@ -58,6 +58,19 @@ def Register_Brand():
     connection = MongoClient('localhost', 27017)
     collection = connection['VehiclesOnRegister_db']['RegisterBrand_collection']
     projects = collection.find(projection={'report_year': True, 'brand_name': True,'register_amount': True,'_id': False}, limit=100000)
+    #projects = collection.find(projection=FIELDS)
+    json_projects = []
+    for project in projects:
+        json_projects.append(project)
+    json_projects = json.dumps(json_projects, default=json_util.default)
+    connection.close()
+    return json_projects
+
+@app.route("/Used/Age/Income/Register/State")
+def Used_Age_Income_Register_State():
+    connection = MongoClient('localhost', 27017)
+    collection = connection['VehiclesOnRegister_db']['UsedAgeIncomeRegisterState']
+    projects = collection.find(projection={'report_year': True, 'states_name': True,'average_income': True,'average_register': True,'average_age_used': True,'_id': False}, limit=100000)
     #projects = collection.find(projection=FIELDS)
     json_projects = []
     for project in projects:
