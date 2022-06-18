@@ -1,26 +1,81 @@
-const data1 = {
-  labels: ["Red", "Green", "Yellow", "Grey", "Blue"],
-  datasets: [
-    {
-      label: "My First Dataset &#1044",
-      data: [11, 16, 7, 3, 14],
-      backgroundColor: [
-        "rgb(255, 99, 132,0.2)",
-        "rgb(75, 192, 192,0.2)",
-        "rgb(255, 205, 86,0.2)",
-        "rgb(201, 203, 207,0.2)",
-        "rgb(54, 162, 235,0.2)",
+
+var mychart;
+d3.json("/Register/Brand", function(data) {
+
+  get_by_year = data.filter(x=>x.report_year===2016)
+
+  brand_names = get_by_year.map(x=>x.brand_name)
+  register_amounts = get_by_year.map(x=>x.register_amount)
+  report_years = get_by_year.map(x=>x.report_year)
+
+
+
+  var data1 = {
+    labels: brand_names,
+    datasets: [
+      {
+        label: "My First Dataset &#1044",
+        data:register_amounts,
+        backgroundColor:false
+      },
+    ],
+  };
+  var config1 = {
+    type: "polarArea",
+    data: data1,
+    options: {},
+  };
+  mychart = new Chart(document.getElementById("polarareaChart"), config1);
+
+});
+
+
+
+function selectedYear(year){
+
+  mychart.destroy()
+  mychart = plot_chart(year,mychart)
+
+}
+
+
+
+function plot_chart(year,mychart){
+
+
+  d3.json("/Register/Brand", function(data) {
+
+    get_by_year = data.filter(x=>x.report_year===parseInt(year))
+  
+    brand_names = get_by_year.map(x=>x.brand_name)
+    register_amounts = get_by_year.map(x=>x.register_amount)
+    report_years = get_by_year.map(x=>x.report_year)
+  
+  
+  
+    var data1 = {
+      labels: brand_names,
+      datasets: [
+        {
+          label: "My First Dataset &#1044",
+          data:register_amounts,
+          backgroundColor:false
+        },
       ],
-    },
-  ],
-};
+    };
+    var config1 = {
+      type: "polarArea",
+      data: data1,
+      options: {},
+    };
+     mychart = new Chart(document.getElementById("polarareaChart"), config1);
+
+  });
+  
+}
+
 
 // config
-const config1 = {
-  type: "polarArea",
-  data: data1,
-  options: {},
-};
+
 
 // render init block
-const myChart1 = new Chart(document.getElementById("polarareaChart"), config1);

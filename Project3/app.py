@@ -37,12 +37,25 @@ def donorschoose_projects():
     connection.close()
     return json_projects
 
-@app.route("/Register/Type/State/Age/")
+# @app.route("/Register/Type/State/Age/")
+# def Register_Type_State_Age():
+#     connection = MongoClient('localhost', 27017)
+#     collection = connection['VehiclesOnRegister_db']['RegisterTypeStateAge_collection']
+#     projects = collection.find(projection={'report_year': True, 'states_name': True,'vehicles_type': True,
+#          'register_amount': True,'age_used': True,'short_name':True, '_id': False}, limit=100000)
+#     #projects = collection.find(projection=FIELDS)
+#     json_projects = []
+#     for project in projects:
+#         json_projects.append(project)
+#     json_projects = json.dumps(json_projects, default=json_util.default)
+#     connection.close()
+#     return json_projects
+
+@app.route("/Register/Brand")
 def Register_Type_State_Age():
     connection = MongoClient('localhost', 27017)
-    collection = connection['VehiclesOnRegister_db']['RegisterTypeStateAge_collection']
-    projects = collection.find(projection={'report_year': True, 'states_name': True,'vehicles_type': True,
-         'register_amount': True,'age_used': True,'short_name':True, '_id': False}, limit=100000)
+    collection = connection['VehiclesOnRegister_db']['RegisterBrand_collection']
+    projects = collection.find(projection={'report_year': True, 'brand_name': True,'register_amount': True}, limit=100000)
     #projects = collection.find(projection=FIELDS)
     json_projects = []
     for project in projects:
@@ -50,7 +63,6 @@ def Register_Type_State_Age():
     json_projects = json.dumps(json_projects, default=json_util.default)
     connection.close()
     return json_projects
-
 
 if __name__ == "__main__":
     # app.run(host='0.0.0.0',port=8000,debug=True)
