@@ -37,32 +37,32 @@ def donorschoose_projects():
     connection.close()
     return json_projects
 
-@app.route("/Register/Type/State/Age/")
-def Register_Type_State_Age():
-    connection = MongoClient('localhost', 27017)
-    collection = connection['VehiclesOnRegister_db']['RegisterTypeStateAge_collection']
-    projects = collection.find(projection={'report_year': True, 'states_name': True,'vehicles_type': True,
-         'register_amount': True,'age_used': True,'short_name':True, '_id': False}, limit=100000)
-    #projects = collection.find(projection=FIELDS)
-    json_projects = []
-    for project in projects:
-        json_projects.append(project)
-    json_projects = json.dumps(json_projects, default=json_util.default)
-    connection.close()
-    return json_projects
+# @app.route("/Register/Type/State/Age/")
+# def Register_Type_State_Age():
+#     connection = MongoClient('localhost', 27017)
+#     collection = connection['VehiclesOnRegister_db']['RegisterTypeStateAge_collection']
+#     projects = collection.find(projection={'report_year': True, 'states_name': True,'vehicles_type': True,
+#          'register_amount': True,'age_used': True,'short_name':True, '_id': False}, limit=100000)
+#     #projects = collection.find(projection=FIELDS)
+#     json_projects = []
+#     for project in projects:
+#         json_projects.append(project)
+#     json_projects = json.dumps(json_projects, default=json_util.default)
+#     connection.close()
+#     return json_projects
 
 @app.route("/Register/Brand")
-def Register_Type_State_Age():
+def Register_Brand():
     connection = MongoClient('localhost', 27017)
     collection = connection['VehiclesOnRegister_db']['RegisterBrand_collection']
     projects = collection.find(projection={'report_year': True, 'brand_name': True,'register_amount': True}, limit=100000)
     #projects = collection.find(projection=FIELDS)
-    json_projects = []
-    for project in projects:
-        json_projects.append(project)
-    json_projects = json.dumps(json_projects, default=json_util.default)
+    json_projects1 = []
+    for project1 in projects1:
+        json_projects1.append(project1)
+    json_projects1 = json.dumps(json_projects1, default=json_util.default)
     connection.close()
-    return json_projects
+    return json_projects1
 
 if __name__ == "__main__":
     # app.run(host='0.0.0.0',port=8000,debug=True)
