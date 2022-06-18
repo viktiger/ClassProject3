@@ -8,6 +8,14 @@ Apart from random project name because we are confused as to which Group project
 
 As an avid motorist and atypical professional questioner that like to ask "why? How? When? Who? What?" :innocent: we came across the dataset from ABS for personal income in Australia within certain period of time. From there, we want to compare the number of motor vehicle registration, average age used (vehicle) by state, particular motor vehicle brand by each state in Australia, and in addition we also take consideration by the population for each state.. since you know not all state in Australia is as popular as NSW #TEAMNSW :heartpulse: Little that we know, from random thought came to our mind, this project came along and now you can see the result in this page. We hope the readers find this as amusing as us :boom:
 
+![lamb](https://aleen42.github.io/badges/src/lamborghini.svg)
+![pors](https://aleen42.github.io/badges/src/porsche.svg)
+![tesla](https://aleen42.github.io/badges/src/tesla.svg)
+![toyota](https://aleen42.github.io/badges/src/toyota.svg)
+![mitsu](https://aleen42.github.io/badges/src/mitsubishi.svg)
+![bmw](https://aleen42.github.io/badges/src/bmw.svg)
+
+
 Data is derived from the Australian Bureau Statistics dataset in order to illustrate the relationship between owning the motor vechicles and your average personal Income within the state. On the side notes, you can also see the data spans between January 2016 and 31 December 2021.
 
 
@@ -45,6 +53,7 @@ Data is derived from the Australian Bureau Statistics dataset in order to illust
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![Plotly](https://img.shields.io/badge/Plotly-%233F4F75.svg?style=for-the-badge&logo=plotly&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+
 
 ## **Data Bases:**
 ![mongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
