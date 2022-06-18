@@ -1,5 +1,5 @@
 
-var mychart;
+
 d3.json("/Register/Brand", function(data) {
 
   get_by_year = data.filter(x=>x.report_year===2016)
@@ -31,18 +31,13 @@ d3.json("/Register/Brand", function(data) {
 
 
 
-function selectedYear(year){
+
+
+
+
+function plot_chart(year){
 
   mychart.destroy()
-  mychart = plot_chart(year,mychart)
-
-}
-
-
-
-function plot_chart(year,mychart){
-
-
   d3.json("/Register/Brand", function(data) {
 
     get_by_year = data.filter(x=>x.report_year===parseInt(year))
