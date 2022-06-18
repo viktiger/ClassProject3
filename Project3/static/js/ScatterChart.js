@@ -7,13 +7,23 @@ let incomeDataOfAllState;
 const renderIncomeChart = (data) => {
   // config
   const config = {
-    type: "line",
+    type: "scatter",
     data,
     options: {
       scales: {
+        x: {
+          type: "linear",
+          position: "bottom",
+          title: {
+            display: true,
+            text: "Weekly Income/Week",
+          },
+        },
         y: {
-          beginAtZero: true,
-          min: 0.6,
+          title: {
+            display: true,
+            text: "Average Register",
+          },
         },
       },
     },
@@ -41,16 +51,16 @@ const renderIncomeChart = (data) => {
 const parsingIncomeData = (rawData) => {
   const result = {};
 
-  rawData.forEach(({ states_name, report_year, average_register }) => {
+  rawData.forEach(({ states_name, average_register, average_income }) => {
     // console.log({states_name, report_year, average_register });
 
     // 1: result = {}; states_name: vic;
     // 2: result = {vic: [...]}; states_name: vic;
     if (result[states_name]) {
-      result[states_name].push({ x: report_year + "", y: average_register });
+      result[states_name].push({ x: average_income, y: average_register });
     } else {
       // 1: result = {}; states_name: vic;
-      result[states_name] = [{ x: report_year + "", y: average_register }];
+      result[states_name] = [{ x: average_income, y: average_register }];
       // 1: result = {vic: [...]}; states_name: vic;
     }
   });
@@ -61,7 +71,6 @@ const parsingIncomeData = (rawData) => {
     result[stateName] = result[stateName].sort((a, b) => a.x - b.x);
   });
 
-  console.log({ result });
   return result;
 };
 
@@ -69,23 +78,23 @@ const parsingIncomeData = (rawData) => {
  * Fetch data - Jan & Feb data
  * default to use Jan data to make graph
  */
-function makeGraphs_2(error, projectsJson, statesJson) {
-  incomeDataOfAllState = parsingIncomeData(projectsJson);
-
+function makeGraphs_2(error, projectsJson_scatter, statesJson) {
+  incomeDataOfAllState = parsingIncomeData(projectsJson_scatter);
   // setup
   const data = {
     // labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
       {
-        label: "Sexy State is Not Victoria",
+        label: "State",
         data: incomeDataOfAllState["Victoria"],
         backgroundColor: ["rgba(255, 26, 104, 0.2)"],
         borderColor: ["rgba(255, 26, 104, 1)"],
         borderWidth: 1,
       },
+
       {
-        type: "line",
-        label: "Total Australia",
+        type: "scatter",
+        label: "Total Australis",
         data: incomeDataOfAllState["Total Australia"],
         fill: false,
         borderColor: "rgb(54, 162, 235)",

@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Dashboard</title>
+  <title>Dashboard - Project 3</title>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://d3js.org/d3.v4.js"  charset="utf-8"></script>
-  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js" type="text/javascript"></script>
+  <!-- Color palette -->
+<!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> -->
+  <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js" type="text/javascript"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" 
   integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" 
   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -20,165 +22,207 @@
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
   <!-- title for the web page -->
 </head>
+<style>
+h1 {
+    display: block;
+    font-size: 400%;
+    margin-top: 0%;
+    margin-bottom: 2%;
+    font-weight: bold;
+};
+
+  h2 {
+    display: block;
+    font-size: 300%;
+    margin-top: 0%;
+    margin-bottom: 40%;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+h3 {
+    display: block;
+    font-size: 200%;
+    margin-top: 0%;
+    margin-bottom: 2%;
+    font-weight: bold;
+};
+
+</style>
 <body>
- 
-    <div class="container py-4">
+
       <header class="pb-3 mb-4 border-bottom">
         <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-          <h1>Project 3</h1>
+          <h1 >Project 3</h1>
         </a>
       </header>
+
+      <div class="container py-4">
+          <div class="row align-items-md-stretch">
+            <h1 > Register on Vehicle in Australis Region</h1>
+            <!-- <p>I will display &#128516; &#66; &#67;</p> -->
+            <div class="col-md-4">
+              <div class="h-30 p-5 text-white bg-warning rounded-3">
+                <h2 >Vehicle Register 22</h2>
+                <h3 class=" fw-bold text-secondary" style="font-size: 200% ">20,142,942</h3>
+                <h5 class=" text-secondary" style="font-size: 200%"> &#11014 1.70% compare to 2021</h5>
+              </div>
+            </div>
+        
+            <div class="col-md-4">
+              <div class="h-30 p-5 text-white bg-secondary rounded-3">
+                <h2 >Total Population 22</h2>
+                <h3 class=" fw-bold text-white" style="font-size: 200%">51,466,876</h3>
+                <h5 class="text-white"style="font-size: 200%"> &#11014 0.17% compare to 2021</h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="h-30 p-5 text-white bg-primary rounded-3">
+                <h2 >Personal Income 22</h2>
+                <h3 class=" fw-bold text-dark"style="font-size: 200%">1,324 / week</h3>
+                <h5 class="text-dark"style="font-size: 200%"> &#11014 1.92% compare to 2021</h5>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="container py-4">
+        <div class="mb-4 bg-light rounded-3">
+          <div class="container-fluid py-5">
+            <h1 >Register on Vehicle in Australis Region by State</h1>
+            <h3 class="fw-bold" >Average Register by State</h3>
+            <canvas id="myChart" style="height:50vh; width:80vw"></canvas>
+              <h3 class="fw-bold" >Weekly Income Vs Average Register</h3>
+              <div class="chartCard">
+                <div class="chartBox">
+                  <canvas id="filter_dar" style="height:20vh; width:80vw"></canvas>
+                  <select onchange = "updateMonth(this)">
+                    <option value="Australian Capital Territory">Australian Capital Territory</option>
+                    <option value="New South Wales">New South Wales</option>
+                    <option value="Northern Territory">Northern Territory</option>
+                    <option value="Queensland">Queensland</option>
+                    <option value="South Australia">South Australia</option>
+                    <option value="Tasmania">Tasmania</option>
+                    <option value="Victoria">Victoria</option>
+                    <option value="Western Australia">Western Australia</option>
+                    <option value="Total Australia">Total Australia</option>
+                  </select>
+                </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="container py-4">
       <div class="row align-items-md-stretch">
-        <h2 class="display-6 fw-bold"> Registrations of Vehicles in Australia by Region</h2>
-        <!-- <p>I will display &#128516; &#66; &#67;</p> -->
-        <div class="col-md-4">
-          <div class="h-30 p-5 text-white bg-warning rounded-3">
-            <h2>Vehicle Register 2022</h2>
-            <h3 class=" fw-bold text-secondary">20,142,942 &#11014 </h3>
-            <h5 class="text-secondary">Increase 1.70% compared to 2021</h5>
-          </div>
-        </div>
-    
-        <div class="col-md-4">
-          <div class="h-30 p-5 text-white bg-secondary rounded-3">
-            <h2>Population 2022</h2>
-            <h3 class=" fw-bold text-white">51,466,876 &#11014</h3>
-            <h5 class="text-white">Increase 0.17% compared to 2021</h5>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="h-30 p-5 text-white bg-primary rounded-3">
-            <h2>PersonalIncome 2022</h2>
-            <h3 class=" fw-bold text-dark">1,324/week &#11014</h3>
-            <h5 class="text-dark">Increase 1.92% compared to 2021</h5>
+        <div class="col-md-6">
+          <div class="h-100 p-5 bg-light border rounded-3">
+            <div class="chartCard">
+              <div class="chartBox">
+                <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
+                  <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+                  <select name="years" id="years" onchange="plot_chart(this.value,mychart)">
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                  </select>
+          
+                  <canvas id="polarareaChart"></canvas>
+              </div>
+            </div>
           </div>
         </div>
 
+        <div class="col-md-6">
+            <div class="h-100 p-5 text-white bg-withe rounded-3">
+            <h1>Register VS Brand</h1>
+            <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+            <div id="my_dataviz2" class="svg-container"></div>
+          </div>
       </div>
-      <div class="mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-          <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
-          <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-          <!-- Chart.js charts -->
-          <canvas id="myChart" width="200px" height="100px"></canvas>
-        </div>
-      </div>
+    </div>
+  
+        
+    <div class="container py-4">
+      <div class="row align-items-md-stretch">
+        <div class="h-100 p-5 bg-light border rounded-3">
+          <h2>Change the background</h2>
+          <p style="padding:30px ;">Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
 
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-secondary rounded-3">
-        <h2>Change the background</h2>
-        <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-        <!-- D3 charts -->
-        <!-- Initialize a select button -->
-        <!-- <select id="selectButton"></select> -->
-        <!-- Create a div where the graph will take place -->
-        <!-- <div id="my_dataviz"></div> -->
-        <canvas id="bubbleChart"></canvas>
-
+          <canvas id="bubbleChart"></canvas>
+          </div>
       </div>
     </div>
 
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <select name="years" id="years" onchange="plot_chart(this.value,mychart)">
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-          <option value="2019">2019</option>
-          <option value="2020">2020</option>
-        </select>
-
-        <canvas id="polarareaChart"></canvas>
+  <div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
+        <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <!-- Chart.js charts -->
+        <div id="heatmap" ></div>
       </div>
     </div>
   </div>
 
-  <div class= "mb-4 p-20">
-    <div class="container-fluid py-5">
-      <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
-      <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-      <div class="chartCard">
-        <div class="chartBox">
-          <canvas id="filter_dar"></canvas>
-          <select onchange = "updateMonth(this)">
-            <option value="Australian Capital Territory">Australian Capital Territory</option>
-            <option value="New South Wales">New South Wales</option>
-            <option value="Northern Territory">Northern Territory</option>
-            <option value="Queensland">Queensland</option>
-            <option value="South Australia">South Australia</option>
-            <option value="Tasmania">Tasmania</option>
-            <option value="Victoria">Victoria</option>
-            <option value="Western Australia">Western Australia</option>
-            <option value="Total Australia">Total Australia</option>
-          </select>
+  <div class="container py-4">
+    <div class="container px-4 py-5" id="hanging-icons">
+      <h2 class="pb-2 border-bottom">Hanging icons</h2>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+          </div>
+          <div>
+            <h2>Featured title</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="#" class="btn btn-primary">
+              Primary button
+            </a>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
+          </div>
+          <div>
+            <h2>Featured title</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="#" class="btn btn-primary">
+              Primary button
+            </a>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
+          </div>
+          <div>
+            <h2>Featured title</h2>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+            <a href="#" class="btn btn-primary">
+              Primary button
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="p-5 mb-4 bg-light rounded-3">
-    <div class="container-fluid py-5">
-      <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
-      <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-      <!-- Chart.js charts -->
-      <div id="heatmap"></div>
-    </div>
-  </div>
-
-  <div class="container px-4 py-5" id="hanging-icons">
-    <h2 class="pb-2 border-bottom">Hanging icons</h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
-        </div>
-        <div>
-          <h2>Featured title</h2>
-          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-          <a href="#" class="btn btn-primary">
-            Primary button
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
-        </div>
-        <div>
-          <h2>Featured title</h2>
-          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-          <a href="#" class="btn btn-primary">
-            Primary button
-          </a>
-        </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-          <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
-        </div>
-        <div>
-          <h2>Featured title</h2>
-          <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-          <a href="#" class="btn btn-primary">
-            Primary button
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
 
 
   
 <script src="../static/lib/js/queue.js"></script>
-<script src="../static/js/barchart.js" type="text/javascript"></script>
-<script src="../static/js/dropdownchartjsbar.js" type="text/javascript"></script>
+<script src="../static/js/BarChart.js" type="text/javascript"></script> -->
+<script src="../static/js/ScatterChart.js" type="text/javascript"></script>
 <script src="../static/js/dropdownchartjsbubble.js" type="text/javascript"></script>
-<!-- <script src="../static/js/dropdownchartjspolarareachart.js" type="text/javascript"></script> -->
+<script src="../static/js/WordChart.js" type="text/javascript"></script>
+<script src="../static/js/chartjsheatmap.js" type="text/javascript"></script>
 <script src="../static/js/CopyofCopyofCopyofLongestNameIfTheWorlddropdownchartjspolarareachart.js" type="text/javascript"></script>
-<script src="../static/js/chartjsheatmap.js" type="text/javascript"></script> -->
+
 
 
 

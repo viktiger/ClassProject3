@@ -1,204 +1,149 @@
 queue().defer(d3.json, "/donorschoose/projects").await(makeGraphs);
 
-// // set the dimensions and margins of the graph
-// var margin = {top: 10, right: 30, bottom: 30, left: 60},
-//     width = 460 - margin.left - margin.right,
-//     height = 400 - margin.top - margin.bottom;
+function makeGraphs(error, projectsJson_bar, statesJson) {
+  console.log(projectsJson_bar);
+  // A = projectsJson.sort(function (a, b) {
+  //   return parseFloat(a.report_year) - parseFloat(b.report_year);
+  // });
+  const parsingRegister = (rawData) => {
+    const result = {};
+    rawData.forEach(({ states_name, report_year, average_register }) => {
+      // console.log({states_name, report_year, average_register });
 
-// // append the svg object to the body of the page
-// var svg = d3.select("#my_dataviz")
-// .append("svg")
-//     .attr("width", width + margin.left + margin.right)
-//     .attr("height", height + margin.top + margin.bottom)
-// .append("g")
-//     .attr("transform",
-//         "translate(" + margin.left + "," + margin.top + ")");
+      // 1: result = {}; states_name: vic;
+      // 2: result = {vic: [...]}; states_name: vic;
+      if (result[states_name]) {
+        result[states_name].push(average_register);
+      } else {
+        // 1: result = {}; states_name: vic;
+        result[states_name] = [average_register];
+        // 1: result = {vic: [...]}; states_name: vic;
+      }
+    });
 
-function makeGraphs(error, projectsJson, statesJson) {
-  const states_name = projectsJson
-    .map((item) => item.states_name)
-    .filter((value, index, self) => self.indexOf(value) === index);
-  const report_year = projectsJson
+    return result;
+  };
+
+  registerData = parsingRegister(projectsJson_bar);
+
+  console.log(Object.keys(registerData));
+
+  // const states_name = projectsJson
+  //   .map((item) => item.states_name)
+  //   .filter((value, index, self) => self.indexOf(value) === index);
+  const report_year = projectsJson_bar
     .map((item) => item.report_year)
     .filter((value, index, self) => self.indexOf(value) === index);
 
-  // // console.log(projectsJson)
-  //     // List of groups (here I have one group per column)
-  //     var allGroup = d3.map(projectsJson, function(d){return(d.states_name)}).keys()
+  // var statedata = [];
+  // var dataname = [];
+  // for (var k = 0; k < states_name.length - 1; k++) {
+  //   var data = [];
+  //   var datayear = [];
+  //   for (var i = 0; i < report_year.length; i++) {
+  //     var filterresult = projectsJson.filter(
+  //       (obj) =>
+  //         obj.report_year == report_year[i] && obj.states_name == states_name[k]
+  //     );
+  //     data.push(filterresult[0].average_register);
+  //     datayear.push(filterresult[0].report_year);
+  //   }
+  //   statedata.push(data);
+  //   dataname.push(states_name[k]);
+  // }
 
-  //     // add the options to the button
-  //     d3.select("#selectButton")
-  //       .selectAll('myOptions')
-  //      	.data(allGroup)
-  //       .enter()
-  //     	.append('option')
-  //       .text(function (d) { return d; }) // text showed in the menu
-  //       .attr("value", function (d) { return d; }) // corresponding value returned by the button
-
-  //     // A color scale: one color for each group
-  //     var myColor = d3.scaleOrdinal()
-  //       .domain(allGroup)
-  //       .range(d3.schemeSet2);
-
-  //     // Add X axis --> it is a date format
-  //     var x = d3.scaleLinear()
-  //       .domain(d3.extent(projectsJson, function(d) { return d.report_year; }))
-  //       .range([ 0, width ]);
-  //     svg.append("g")
-  //       .attr("transform", "translate(0," + height + ")")
-  //       .call(d3.axisBottom(x).ticks(report_year.length));
-
-  //     // Add Y axis
-  //     var y = d3.scaleLinear()
-  //       .domain([0, d3.max(projectsJson, function(d) { return d.average_register; })])
-  //       .range([ height, 0 ]);
-  //     svg.append("g")
-  //       .call(d3.axisLeft(y));
-
-  //     // Initialize line with first group of the list
-  //     var line = svg
-  //       .append('g')
-  //       .append("path")
-  //         .datum(projectsJson.filter(function(d){return d.states_name==allGroup[0]}))
-  //         .attr("d", d3.line()
-  //           .x(function(d) { return x(+d.report_year) })
-  //           .y(function(d) { return y(+d.average_register) })
-  //         )
-  //         .attr("stroke", function(d){ return myColor("valueA") })
-  //         .style("stroke-width", 4)
-  //         .style("fill", "none")
-
-  //     // A function that update the chart
-  //     function update(selectedGroup) {
-
-  //       // Create new data with the selection?
-  //       var dataFilter = projectsJson.filter(function(d){return d.states_name==selectedGroup})
-
-  //       // Give these new data to update line
-  //       line
-  //           .datum(dataFilter)
-  //           .transition()
-  //           .duration(1000)
-  //           .attr("d", d3.line()
-  //             .x(function(d) { return x(d.report_year) })
-  //             .y(function(d) { return y(+d.average_register) })
-  //           )
-  //           .attr("stroke", function(d){ return myColor(selectedGroup) })
-  //     }
-
-  //     // When the button is changed, run the updateChart function
-  //     d3.select("#selectButton").on("change", function(d) {
-  //         // recover the option that has been chosen
-  //         var selectedOption = d3.select(this).property("value")
-  //         // run the updateChart function with this selected option
-  //         update(selectedOption)
-  //     })
-
-  var statedata = [];
-  for (var i = 0; i < report_year.length; i++) {
-    var data = [];
-    for (var k = 0; k < states_name.length - 1; k++) {
-      const filterresult = projectsJson.filter(
-        (obj) =>
-          obj.report_year == report_year[i] && obj.states_name == states_name[k]
-      );
-      data.push(filterresult[0].average_register);
-    }
-    statedata.push(data);
-  }
-  // console.log(report_year)
-  // console.log(statedata)
-  // console.log(statedata[1])
-
-  var totalaustralia = [];
-  for (var i = 0; i < report_year.length; i++) {
-    const fitleraustralia = projectsJson.filter(
-      (obj) =>
-        obj.report_year == report_year[i] &&
-        obj.states_name == "Total Australia"
-    );
-    totalaustralia.push(fitleraustralia[0].average_register);
-  }
-  // console.log(totalaustralia)
-
+  // var totalaustralia = [];
+  // for (var i = 0; i < report_year.length; i++) {
+  //   const fitleraustralia = projectsJson.filter(
+  //     (obj) =>
+  //       obj.report_year == report_year[i] &&
+  //       obj.states_name == "Total Australia"
+  //   );
+  //   totalaustralia.push(fitleraustralia[0].average_register);
+  // }
+  console.log(registerData);
   const ctx = document.getElementById("myChart").getContext("2d");
   const myChart = new Chart(ctx, {
-    type: "scatter",
+    // type: "scatter",
     data: {
       labels: report_year,
       datasets: [
         {
           type: "bar",
-          label: states_name[0],
-          data: statedata[0],
+          label: Object.keys(registerData)[0],
+          data: registerData[`${Object.keys(registerData)[0]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          backgroundColor: "rgba(255, 138, 41, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[1],
-          data: statedata[1],
+          label: Object.keys(registerData)[1],
+          data: registerData[`${Object.keys(registerData)[1]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(255, 159, 64, 0.2)",
+          backgroundColor: "rgba(40, 90, 112, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[2],
-          data: statedata[2],
+          label: Object.keys(registerData)[2],
+          data: registerData[`${Object.keys(registerData)[2]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(255, 205, 86, 0.2)",
+          backgroundColor: "rgba(255, 205, 86, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[3],
-          data: statedata[3],
+          label: Object.keys(registerData)[3],
+          data: registerData[`${Object.keys(registerData)[3]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          backgroundColor: "rgba(75, 192, 192, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[4],
-          data: statedata[4],
+          label: Object.keys(registerData)[4],
+          data: registerData[`${Object.keys(registerData)[4]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(54, 162, 235, 0.2)",
+          backgroundColor: "rgba(54, 162, 235, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[5],
-          data: statedata[5],
+          label: Object.keys(registerData)[5],
+          data: registerData[`${Object.keys(registerData)[5]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(153, 102, 255, 0.2)",
+          backgroundColor: "rgba(154, 262, 235, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[6],
-          data: statedata[6],
+          label: Object.keys(registerData)[6],
+          data: registerData[`${Object.keys(registerData)[6]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(201, 203, 207, 0.2)",
+          backgroundColor: "rgba(201, 203, 207, 0.5)",
         },
         {
           type: "bar",
-          label: states_name[7],
-          data: statedata[7],
+          label: Object.keys(registerData)[7],
+          data: registerData[`${Object.keys(registerData)[7]}`],
           // borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: "rgba(101, 223, 157, 0.2)",
+          backgroundColor: "rgba(101, 223, 157, 0.5)",
         },
         {
           type: "line",
-          label: states_name[8],
-          data: totalaustralia,
+          label: Object.keys(registerData)[8],
+          data: registerData[`${Object.keys(registerData)[8]}`],
           fill: false,
-          borderColor: "rgb(54, 162, 235)",
+          borderColor: "rgb(135, 45, 59)",
         },
       ],
     },
     options: {
       scales: {
-        myScale: {
+        y: {
           // type: 'logarithmic',
           position: "left", // `axis` is determined by the position as `'y'`
           min: 0.6,
           max: 1,
+          title: {
+            display: true,
+            text: "Average Register(per person)",
+          },
         },
       },
     },

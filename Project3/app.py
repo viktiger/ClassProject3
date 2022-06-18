@@ -15,7 +15,7 @@ import json
 # collection = connection[DBS_NAME][COLLECTION_NAME]
 
 #Specify variables in csv of interest
-FIELDS = {'report_year': True, 'states_name': True,'register_amount': True, 'average_income': True,'population_number': True,'average_register': True,'_id': False}
+FIELDS = {'report_year': True, 'states_name': True,'register_amount': True, 'average_income': True,'population_number': True,'average_register': True,'age_used':True,'land_size':True,'_id': False}
 
 app = Flask(__name__)
 
@@ -28,7 +28,9 @@ def index():
 def donorschoose_projects():
     connection = MongoClient('localhost', 27017)
     collection = connection['VehiclesOnRegister_db']['RegisterAgebyState_collection']
-    projects = collection.find(projection=FIELDS, limit=100000)
+    projects = collection.find(projection={'report_year': True, 'states_name': True,'register_amount': True, 
+    'average_income': True,'population_number': True,'average_register': True,'age_used':True,
+    'land_size':True,'_id': False}, limit=100000)
     #projects = collection.find(projection=FIELDS)
     json_projects = []
     for project in projects:
@@ -51,11 +53,11 @@ def Register_Type_State_Age():
     connection.close()
     return json_projects
 
-@app.route("/Register/Brand")
-def Register_Type_State_Age():
+@app.route("/Register/Brand/")
+def Register_Brand():
     connection = MongoClient('localhost', 27017)
     collection = connection['VehiclesOnRegister_db']['RegisterBrand_collection']
-    projects = collection.find(projection={'report_year': True, 'brand_name': True,'register_amount': True}, limit=100000)
+    projects = collection.find(projection={'report_year': True, 'brand_name': True,'register_amount': True,'_id': False}, limit=100000)
     #projects = collection.find(projection=FIELDS)
     json_projects = []
     for project in projects:

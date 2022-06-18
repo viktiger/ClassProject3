@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
 var margin = { top: 30, right: 40, bottom: 30, left: 30 },
-  width = 1250 - margin.left - margin.right,
+  width = 1200 - margin.left - margin.right,
   height = 450 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
@@ -25,8 +25,6 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
   var myGroups = vehicles_type;
   var myVars = short_name;
 
-  console.log(short_name);
-
   // Build X scales and axis:
   var x = d3.scaleBand().range([0, width]).domain(myGroups).padding(0.01);
   svg
@@ -41,10 +39,11 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
   svg.append("g").call(d3.axisLeft(y)).attr("font-size", "8");
 
   // Build color scale
-  var myColor = d3.scaleLinear().range(["white", "#0c6e57"]).domain([1, 100]);
+  var myColor = d3.scaleLinear().range(["white", "#06403d"]).domain([1, 100]);
 
   // create a tooltip
-  var tooltip = d3.select("#heatmap")
+  var tooltip = d3
+    .select("#heatmap")
     .append("div")
     .style("opacity", 0)
     .attr("class", "tooltip")
@@ -61,8 +60,8 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
   var mousemove = function (d) {
     tooltip
       .html("The exact value of<br>this cell is: " + d.age_used)
-      .style("left", d3.mouse(this)[0] + 70 + "px")
-      .style("top", d3.mouse(this)[1] + "px");
+      .style("left", d3.mouse(this)[0] + 6000 + "px")
+      .style("top", d3.mouse(this)[1] + 7000 + "px");
   };
   var mouseleave = function (d) {
     tooltip.style("opacity", 0);
