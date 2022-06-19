@@ -147,38 +147,19 @@
   </div>
 
   <div class="container py-4">
-    <div class="row align-items-md-stretch">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <div class="chartCard">
-          <div class="chartBox">
+      <div class="row align-items-md-stretch">
+        <div class="h-100 p-5 bg-light border rounded-3">
             <h1>Average Income, Average Register and Average Age Used</h1>
-            <p class="col-md-8 fs-6">Explore the relationship between the average income, the average registration
-              numbers and the average years the motor vehicles are being used in each state of Australia from 2016 -
-              2021</p>
-            <select name="years" id="years" onchange="plot_chart(this.value, bubbleChart)">
-              <option value="2016">2016</option>
-              <option value="2017">2017</option>
-              <option value="2018">2018</option>
-              <option value="2019">2019</option>
-              <option value="2020">2020</option>
-              <option value="2021">2021</option>
-            </select>
-            <select onchange="updateYear(this.value, bubbleChart)">
-              <option value="Australian Capital Territory">Australian Capital Territory</option>
-              <option value="New South Wales">New South Wales</option>
-              <option value="Northern Territory">Northern Territory</option>
-              <option value="Queensland">Queensland</option>
-              <option value="South Australia">South Australia</option>
-              <option value="Tasmania">Tasmania</option>
-              <option value="Victoria">Victoria</option>
-              <option value="Western Australia">Western Australia</option>
-            </select>
-            <canvas id="bubbleChart"></canvas>
-          </div>
+              <p class="col-md-8 fs-6">Explore the relationship between the average income, the average registration
+                numbers and the average years the motor vehicles are being used in each state of Australia from 2016 - 2021.</p>
+                <div class="chartCard">
+                  <div class="chartBox">
+                    <canvas id="bubbleChart"></canvas>
+                  </div>
+                </div>
         </div>
       </div>
     </div>
-  </div>
 
 
   <div class="container py-4">
