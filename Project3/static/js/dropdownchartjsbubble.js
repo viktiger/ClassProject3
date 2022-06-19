@@ -35,10 +35,10 @@ d3.json("/Used/Age/Income/Register/State", function(rawData) {
     rawData.forEach(({ states_name, report_year, average_register, average_income, average_age_used }) => {
 
       if (result[states_name]) {
-        result[states_name].push({ average_income, average_register, average_age_used });
+        result[states_name].push({ x:average_income, y:average_register, r:average_age_used });
       } else {
 
-        result[states_name] = [{ average_income, average_register, average_age_used }];
+        result[states_name] = [{ x:average_income, y:average_register, r:average_age_used }];
       }
     });
     
@@ -55,7 +55,7 @@ d3.json("/Used/Age/Income/Register/State", function(rawData) {
   console.log(report_year);
 
   var data = {
-      //labels: report_year,
+      labels: report_year,
       datasets: [{
         type: "bubble",
         label: Object.keys(DataOfState)[0],
