@@ -94,7 +94,7 @@ function makeGraphs_2(error, projectsJson_scatter, statesJson) {
 
       {
         type: "scatter",
-        label: "Total Australis",
+        label: "Total Australia",
         data: incomeDataOfAllState["Total Australia"],
         fill: false,
         backgroundColor: ["rgba(36, 110, 112, 0.2)"],
