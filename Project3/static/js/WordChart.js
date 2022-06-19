@@ -18,7 +18,7 @@ function makeGraphs4(error, projectsJson, statesJson) {
     "#007be3",
     "#403474",
   ];
-  A = [8, 128, 228, 328, 428];
+  // A = [8, 128, 228, 328, 428];
   // append the svg object to the body of the page
   var svg = d3
     .select("#my_dataviz2")

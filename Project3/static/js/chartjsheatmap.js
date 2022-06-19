@@ -39,33 +39,33 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
   svg.append("g").call(d3.axisLeft(y)).attr("font-size", "8");
 
   // Build color scale
-  var myColor = d3.scaleLinear().range(["white", "#06403d"]).domain([1, 100]);
+  var myColor = d3.scaleLinear().range(["white", "#266c99"]).domain([1, 100]);
 
-  // create a tooltip
-  var tooltip = d3
-    .select("#heatmap")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px");
+  // // create a tooltip
+  // var tooltip = d3
+  //   .select("#heatmap")
+  //   .append("div")
+  //   .style("opacity", 0)
+  //   .attr("class", "tooltip")
+  //   .style("background-color", "white")
+  //   .style("border", "solid")
+  //   .style("border-width", "2px")
+  //   .style("border-radius", "5px")
+  //   .style("padding", "5px");
 
-  // Three function that change the tooltip when user hover / move / leave a cell
-  var mouseover = function (d) {
-    tooltip.style("opacity", 1);
-  };
-  var mousemove = function (d) {
-    tooltip
-      .html("The exact value of<br>this cell is: " + d.age_used)
-      .style("left", d3.mouse(this)[0] + 6000 + "px")
-      .style("top", d3.mouse(this)[1] + 7000 + "px");
-  };
-  var mouseleave = function (d) {
-    tooltip.style("opacity", 0);
-  };
+  // // Three function that change the tooltip when user hover / move / leave a cell
+  // var mouseover = function (d) {
+  //   tooltip.style("opacity", 1);
+  // };
+  // var mousemove = function (d) {
+  //   tooltip
+  //     .html("The exact value of<br>this cell is: " + d.age_used)
+  //     .style("left", d3.mouse(this)[0] + 6000 + "px")
+  //     .style("top", d3.mouse(this)[1] + 7000 + "px");
+  // };
+  // var mouseleave = function (d) {
+  //   tooltip.style("opacity", 0);
+  // };
 
   // add the squares
   svg
@@ -86,8 +86,8 @@ function makeGraphs_3(error, RegisterTypeStateAge, statesJson) {
 
     .style("fill", function (d) {
       return myColor(d.age_used);
-    })
-    .on("mouseover", mouseover)
-    .on("mousemove", mousemove)
-    .on("mouseleave", mouseleave);
+    });
+  // .on("mouseover", mouseover)
+  // .on("mousemove", mousemove)
+  // .on("mouseleave", mouseleave);
 }

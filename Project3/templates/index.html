@@ -1,249 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>Dashboard - Project 3</title>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://d3js.org/d3.v4.js"  charset="utf-8"></script>
+  <script src="https://d3js.org/d3.v4.js" charset="utf-8"></script>
   <!-- Color palette -->
-<!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> -->
+  <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> -->
   <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js" type="text/javascript"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"
-  integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
-  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" 
   integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/jumbotron/">
   <!-- Bootstrap core CSS -->
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet" >
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="../static/css/barchart.css">
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
   <!-- title for the web page -->
 </head>
 <style>
-h1 {
+  h1 {
     display: block;
     font-size: 400%;
-    margin-top: 0%;
-    margin-bottom: 2%;
     font-weight: bold;
-};
+  }
+
+  ;
 
   h2 {
     display: block;
     font-size: 300%;
-    margin-top: 0%;
-    margin-bottom: 40%;
-    margin-left: 0;
-    margin-right: 0;
     font-weight: bold;
-}
-h3 {
+  }
+
+  h3 {
     display: block;
     font-size: 200%;
-    margin-top: 0%;
-    margin-bottom: 2%;
     font-weight: bold;
-};
+  }
 
+  ;
 </style>
+
 <body>
 
-      <header class="pb-3 mb-4 border-bottom">
-        <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-          <h1 >Project 3</h1>
-        </a>
-      </header>
+  <!-- 
+  Header sector
+ -->
 
-      <div class="container py-4">
-          <div class="row align-items-md-stretch">
-            <h1 > Register on Vehicle in Australis Region</h1>
-            <!-- <p>I will display &#128516; &#66; &#67;</p> -->
-            <div class="col-md-4">
-              <div class="h-30 p-5 text-white bg-warning rounded-3">
-                <h2 >Vehicle Register 22</h2>
-                <h3 class=" fw-bold text-secondary" style="font-size: 200% ">20,142,942</h3>
-                <h5 class=" text-secondary" style="font-size: 200%"> &#11014 1.70% compare to 2021</h5>
-              </div>
-            </div>
-        
-            <div class="col-md-4">
-              <div class="h-30 p-5 text-white bg-secondary rounded-3">
-                <h2 >Total Population 22</h2>
-                <h3 class=" fw-bold text-white" style="font-size: 200%">51,466,876</h3>
-                <h5 class="text-white"style="font-size: 200%"> &#11014 0.17% compare to 2021</h5>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <div class="h-30 p-5 text-white bg-primary rounded-3">
-                <h2 >Personal Income 22</h2>
-                <h3 class=" fw-bold text-dark"style="font-size: 200%">1,324 / week</h3>
-                <h5 class="text-dark"style="font-size: 200%"> &#11014 1.92% compare to 2021</h5>
-              </div>
-            </div>
-        </div>
-      </div>
-
-
-      <div class="container py-4">
-        <div class="mb-4 bg-light rounded-3">
-          <div class="container-fluid py-5">
-            <h1 >Register on Vehicle in Australis Region by State</h1>
-            <h3 class="fw-bold" >Average Register by State</h3>
-            <canvas id="myChart" style="height:50vh; width:80vw"></canvas>
-              <h3 class="fw-bold" >Weekly Income Vs Average Register</h3>
-              <div class="chartCard">
-                <div class="chartBox">
-                  <canvas id="filter_dar" style="height:20vh; width:80vw"></canvas>
-                  <select onchange = "updateMonth(this)">
-                    <option value="Australian Capital Territory">Australian Capital Territory</option>
-                    <option value="New South Wales">New South Wales</option>
-                    <option value="Northern Territory">Northern Territory</option>
-                    <option value="Queensland">Queensland</option>
-                    <option value="South Australia">South Australia</option>
-                    <option value="Tasmania">Tasmania</option>
-                    <option value="Victoria">Victoria</option>
-                    <option value="Western Australia">Western Australia</option>
-                    <option value="Total Australia">Total Australia</option>
-                  </select>
-                </div>
-          </div>
-          </div>
-        </div>
-      </div>
-
+  <header class="pb-3 mb-4">
     <div class="container py-4">
-      <div class="row align-items-md-stretch">
-        <div class="col-md-6">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <div class="chartCard">
-              <div class="chartBox">
-                <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
-                  <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-                  <select name="years" id="years" onchange="plot_chart(this.value,mychart)">
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                  </select>
-          
-                  <canvas id="polarareaChart"></canvas>
-              </div>
-            </div>
+      <a class="d-flex align-items-center text-dark text-decoration-none">
+        <h1 style="margin-top:2%">Project 3</h1>
+      </a>
+      <h2 class="fw-bold border-bottom" style="text-align: right">Register on Vehicle in Australis Region</h2>
+    </div>
+  </header>
+
+  <div class="container py-4">
+    <div class="row align-items-md-stretch">
+      <h1> Overall</h1>
+      <!-- <p>I will display &#128516; &#66; &#67;</p> -->
+      <div class="col-md-4">
+        <div class="h-30 p-5 text-white rounded-3" style="background-color:#ffa22d">
+          <h2>Vehicle Register 22</h2>
+          <h3 class=" fw-bold text-secondary" style="font-size: 200% ">20,142,942</h3>
+          <h5 class=" text-secondary" style="font-size: 200%"> &#11014 1.70% compare to 2021</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="h-30 p-5 text-white rounded-3" style="background-color:#2a5c71">
+          <h2>Total Population 22</h2>
+          <h3 class=" fw-bold text-white" style="font-size: 200%">51,466,876</h3>
+          <h5 class="text-white" style="font-size: 200%"> &#11014 0.17% compare to 2021</h5>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="h-30 p-5 text-white rounded-3" style="background-color:#d65d5e">
+          <h2>Personal Income 22</h2>
+          <h3 class=" fw-bold text-dark" style="font-size: 200%">1,324 / week</h3>
+          <h5 class="text-dark" style="font-size: 200%"> &#11014 1.92% compare to 2021</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container py-4">
+    <h1 style="color:rgba(47,68,76,1)">Register on Vehicle in Australis Region by State</h1>
+    <div class="mb-4 rounded-3" style="background-color: rgba(202,215,230,0.10) ">
+      <div class="container-fluid py-5 h-30 p-5">
+        <h3 class="fw-bold" style="color:rgba(47,68,76,0.85)">Average Register by State</h3>
+        <canvas id="myChart" style="height:50vh; width:80vw"></canvas>
+        <br>
+        <br>
+        <h3 class="fw-bold " style="color:rgba(47,68,76,0.85)">Weekly Income Vs Average Register</h3>
+        <div class="chartCard">
+          <div class="chartBox">
+            <canvas id="filter_dar" style="height:20vh; width:80vw"></canvas>
+            <select onchange="updateMonth(this)" style="font-size: 150%">
+              <option value="Australian Capital Territory">Australian Capital Territory</option>
+              <option value="New South Wales">New South Wales</option>
+              <option value="Northern Territory">Northern Territory</option>
+              <option value="Queensland">Queensland</option>
+              <option value="South Australia">South Australia</option>
+              <option value="Tasmania">Tasmania</option>
+              <option value="Victoria">Victoria</option>
+              <option value="Western Australia">Western Australia</option>
+              <option value="Total Australia">Total Australia</option>
+            </select>
           </div>
         </div>
-
-        <div class="col-md-6">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <h1>Register VS Brand</h1>
-            <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container py-4">
+    <h1 style="color:rgba(71,37,24,1)">Register on Vehicle Brand</h1>
+    <div class="mb-4 rounded-3" style="background-color: rgba(230,217,202,0.1); ">
+      <div class="container-fluid py-5 h-30 p-5">
+        <div class="row">
+          <div class="col-md-6">
+            <h3 class="fw-bold " style="color:rgba(71,37,24,0.75);">Yearly distribution</h3>
+            <select name="years" id="years" onchange="plot_chart(this.value,mychart)">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+            </select>
+            <canvas id="polarareaChart" style="margin: 1%;"></canvas>
+          </div>
+          <div class="col-md-6">
+            <h3 class="fw-bold " style="color:rgba(71,37,24,0.75); ">Total distribution</h3>
             <div id="my_dataviz2" class="svg-container"></div>
           </div>
         </div>
+      </div>
     </div>
   </div>
-  
-        
-    <div class="container py-4">
-      <div class="row align-items-md-stretch">
-        <div class="h-100 p-5 bg-light border rounded-3">
-          <div class="chartCard">
-            <div class="chartBox">
-              <h1>Average Income, Average Register and Average Age Used</h1>
-              <p class="col-md-8 fs-6">Explore the relationship between the average income, the average registration numbers and the average years the motor vehicles are being used in each state of Australia from 2016 - 2021</p>
-              <select name="years" id="years" onchange="plot_chart(this.value, bubbleChart)">
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-                <option value="2019">2019</option>
-                <option value="2020">2020</option>
-                <option value="2021">2021</option>
-              </select>
-              <select onchange = "updateYear(this.value, bubbleChart)">
-                <option value="Australian Capital Territory">Australian Capital Territory</option>
-                <option value="New South Wales">New South Wales</option>
-                <option value="Northern Territory">Northern Territory</option>
-                <option value="Queensland">Queensland</option>
-                <option value="South Australia">South Australia</option>
-                <option value="Tasmania">Tasmania</option>
-                <option value="Victoria">Victoria</option>
-                <option value="Western Australia">Western Australia</option>
-              </select>
-              <canvas id="bubbleChart"></canvas>
-            </div>
+
+  <div class="container py-4">
+    <div class="row align-items-md-stretch">
+      <div class="h-100 p-5 bg-light border rounded-3">
+        <div class="chartCard">
+          <div class="chartBox">
+            <h1>Average Income, Average Register and Average Age Used</h1>
+            <p class="col-md-8 fs-6">Explore the relationship between the average income, the average registration
+              numbers and the average years the motor vehicles are being used in each state of Australia from 2016 -
+              2021</p>
+            <select name="years" id="years" onchange="plot_chart(this.value, bubbleChart)">
+              <option value="2016">2016</option>
+              <option value="2017">2017</option>
+              <option value="2018">2018</option>
+              <option value="2019">2019</option>
+              <option value="2020">2020</option>
+              <option value="2021">2021</option>
+            </select>
+            <select onchange="updateYear(this.value, bubbleChart)">
+              <option value="Australian Capital Territory">Australian Capital Territory</option>
+              <option value="New South Wales">New South Wales</option>
+              <option value="Northern Territory">Northern Territory</option>
+              <option value="Queensland">Queensland</option>
+              <option value="South Australia">South Australia</option>
+              <option value="Tasmania">Tasmania</option>
+              <option value="Victoria">Victoria</option>
+              <option value="Western Australia">Western Australia</option>
+            </select>
+            <canvas id="bubbleChart"></canvas>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
 
   <div class="container py-4">
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h3 class="display-5 fw-bold">Register Vs Personal Income (average)</h1>
-        <p class="col-md-8 fs-6">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-        <!-- Chart.js charts -->
-        <div id="heatmap" ></div>
+    <h1 style="color:rgba(51,80,104,1)">Used Age on Vehicle Type</h1>
+    <div class="mb-4 rounded-3" style="background-color: rgba(18,132,170,0.05); ">
+      <div class="container-fluid py-5 h-30 p-5">
+        <div id="heatmap"></div>
       </div>
     </div>
   </div>
 
   <div class="container py-4">
     <div class="container px-4 py-5" id="hanging-icons">
-      <h2 class="pb-2 border-bottom">Hanging icons</h2>
+      <h2 class="pb-2 border-bottom fw-bold">Resources We Used</h2>
       <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
         <div class="col d-flex align-items-start">
-          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-            <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+          <div
+            class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="#toggles2"></use>
+            </svg>
           </div>
           <div>
-            <h2>Featured title</h2>
-            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-            <a href="#" class="btn btn-primary">
-              Primary button
+            <h5 class="fw-bold ">Motor Vehicle Register Census, Australia</h5>
+            <p>Statistics relating to vehicles which were registered on 31st January 2021 with a motor vehicle
+              registration authority</p>
+            <h6 class="fw-bold ">Reference period</h6>
+            <h6>31 Jan 2021</h6>
+            <a href="https://www.abs.gov.au/statistics/industry/tourism-and-transport/motor-vehicle-census-australia/latest-release#:~:text=There%20were%2020.1%20million%20registered,up%20from%2020.9%25%20in%202016."
+              class="btn btn-primary" style="background-color:#e1a93c">
+              Go There
             </a>
           </div>
         </div>
         <div class="col d-flex align-items-start">
-          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-            <svg class="bi" width="1em" height="1em"><use xlink:href="#cpu-fill"></use></svg>
+          <div
+            class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="#cpu-fill"></use>
+            </svg>
           </div>
           <div>
-            <h2>Featured title</h2>
-            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-            <a href="#" class="btn btn-primary">
-              Primary button
+            <h5 class="fw-bold ">Employee Earnings and Hours, Australia</h5>
+            <p>Includes earnings and hours statistics for characteristics such as industry, occupation, sex, age,
+              full-time/part-time, and method of setting pay</p>
+            <h6 class="fw-bold ">Reference period</h6>
+            <h6>May 2021</h6>
+            <a href="https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2021"
+              class="btn btn-primary" style="background-color:#266b98">
+              Go There
             </a>
           </div>
         </div>
         <div class="col d-flex align-items-start">
-          <div class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-            <svg class="bi" width="1em" height="1em"><use xlink:href="#tools"></use></svg>
+          <div
+            class="icon-square bg-light text-dark d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <svg class="bi" width="1em" height="1em">
+              <use xlink:href="#tools"></use>
+            </svg>
           </div>
           <div>
-            <h2>Featured title</h2>
-            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-            <a href="#" class="btn btn-primary">
-              Primary button
+            <h5 class="fw-bold ">National, state and territory population, Australia</h5>
+            <p>Statistics about the population and components of change (births, deaths, migration) for Australia and
+              its states and territories</p>
+            <h6 class="fw-bold ">Reference period</h6>
+            <h6>September 2021</h6>
+            <a href="https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/sep-2021"
+              class="btn btn-primary" style="background-color:#aa647c">
+              Go There
             </a>
           </div>
+          <!-- </div>
+      </div> -->
         </div>
       </div>
-    </div>
-  </div>
 
-
-  
-<script src="../static/lib/js/queue.js"></script>
-<script src="../static/js/BarChart.js" type="text/javascript"></script> -->
-<script src="../static/js/ScatterChart.js" type="text/javascript"></script>
-<script src="../static/js/dropdownchartjsbubble.js" type="text/javascript"></script>
-<script src="../static/js/WordChart.js" type="text/javascript"></script>
-<script src="../static/js/chartjsheatmap.js" type="text/javascript"></script>
-<script src="../static/js/CopyofCopyofCopyofLongestNameIfTheWorlddropdownchartjspolarareachart.js" type="text/javascript"></script>
+      <script src="../static/lib/js/queue.js"></script>
+      <script src="../static/js/BarChart.js" type="text/javascript"></script> -->
+      <script src="../static/js/ScatterChart.js" type="text/javascript"></script>
+      <script src="../static/js/dropdownchartjsbubble.js" type="text/javascript"></script>
+      <script src="../static/js/WordChart.js" type="text/javascript"></script>
+      <script src="../static/js/chartjsheatmap.js" type="text/javascript"></script>
+      <script src="../static/js/CopyofCopyofCopyofLongestNameIfTheWorlddropdownchartjspolarareachart.js"
+        type="text/javascript"></script>
 
 
 
@@ -251,36 +270,37 @@ h3 {
 
 
 
-<!-- <div id="pieChart"></div>
-  <div id="barChart"></div>
+      <!-- <div id="pieChart"></div>
+  <div id="barChart"></div>  
   <div id="lineChart" ></div>
   <div id="BarLineChart"></div> -->
-  <!-- <canvas id="countries" width="600" height="400"></canvas> -->
-  <!-- <div id='dropdown_line'></div> -->
-    
-  <!-- <script src="./static/lib/js/jquery.min.js"></script>
+      <!-- <canvas id="countries" width="600" height="400"></canvas> -->
+      <!-- <div id='dropdown_line'></div> -->
+
+      <!-- <script src="./static/lib/js/jquery.min.js"></script>
   <script src="./static/lib/js/bootstrap.min.js"></script>
   <script src="./static/lib/js/crossfilter.js"></script>
   <script src="./static/lib/js/d3.js"></script>
   <script src="./static/lib/js/dc.js"></script> -->
-  <!-- <script src="./static/js/wholeregion.js"></script>
+      <!-- <script src="./static/js/wholeregion.js"></script> 
   <script src="./static/js/app.js"></script>  -->
-  <!-- <script src="./static/js/chartjs.js"></script> -->
-  <!-- <script src="../static/lib/js/queue.js"></script> -->
-  <!-- <script src="../static/lib/js/utils.js"></script> -->
+      <!-- <script src="./static/js/chartjs.js"></script> -->
+      <!-- <script src="../static/lib/js/queue.js"></script> -->
+      <!-- <script src="../static/lib/js/utils.js"></script> -->
 
-  <!-- <script src="./static/js/graphs.js"></script>  -->
-  <!-- Color Scale -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script> -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script> -->
- <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js" type="text/javascript"></script>
+      <!-- <script src="./static/js/graphs.js"></script>  -->
+      <!-- Color Scale -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script> -->
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.min.js"></script> -->
+      <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js" type="text/javascript"></script>
   <script src="../static/js/barchart.js" type="text/javascript"></script>
 
   <link rel="stylesheet" type="text/css" href="../static/css/barchart.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
   integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 
-  <!-- <script src="./static/lib/js/keen.min.js"></script> -->
-  
+      <!-- <script src="./static/lib/js/keen.min.js"></script> -->
+
 </body>
+
 </html>

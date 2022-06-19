@@ -87,8 +87,8 @@ function makeGraphs_2(error, projectsJson_scatter, statesJson) {
       {
         label: "State",
         data: incomeDataOfAllState["Victoria"],
-        backgroundColor: ["rgba(255, 26, 104, 0.2)"],
-        borderColor: ["rgba(255, 26, 104, 1)"],
+        backgroundColor: ["rgba(255, 138, 41, 0.2)"],
+        borderColor: ["rgba(255, 138, 41, 1)"],
         borderWidth: 1,
       },
 
@@ -97,7 +97,8 @@ function makeGraphs_2(error, projectsJson_scatter, statesJson) {
         label: "Total Australis",
         data: incomeDataOfAllState["Total Australia"],
         fill: false,
-        borderColor: "rgb(54, 162, 235)",
+        backgroundColor: ["rgba(36, 110, 112, 0.2)"],
+        borderColor: ["rgb(36, 110, 112,1)"],
       },
     ],
   };
