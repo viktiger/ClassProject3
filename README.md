@@ -47,9 +47,8 @@ Data is derived from the Australian Bureau Statistics dataset in order to illust
 
 ## **Data Sources:**
 Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
-![ABS employee earnings](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2021#data-download)
-![ABS motor vehicles census](https://www.abs.gov.au/statistics/industry/tourism-and-transport/motor-vehicle-census-australia/31-jan-2021#data-download)
-
+[ABS employee earnings](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2021#data-download)
+[ABS motor vehicles census](https://www.abs.gov.au/statistics/industry/tourism-and-transport/motor-vehicle-census-australia/31-jan-2021#data-download)
 
 ## **Project Charter:**
 (1) Display script from repository\
