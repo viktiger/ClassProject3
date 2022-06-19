@@ -44,7 +44,7 @@ Data is derived from the Australian Bureau Statistics dataset in order to illust
 8. Visualise dashboard locally or in Heroku
 
 ## Architectural Diagram:
-![ETL](project3.png)
+![ETL](image/project3.png)
 
 ## **Project Charter:**
 (1) Display script from repository\
