@@ -29,7 +29,7 @@ Data is derived from the Australian Bureau Statistics dataset in order to illust
 8. Visualise dashboard locally or in Heroku
 
 ## **Architectural Diagram:**
-
+![ETL](image/project3.png)
 
 ## **Data Sources:**
 Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
