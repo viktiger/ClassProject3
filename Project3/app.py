@@ -23,7 +23,6 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-
 @app.route("/donorschoose/projects/")
 def donorschoose_projects():
     connection = MongoClient('localhost', 27017)
