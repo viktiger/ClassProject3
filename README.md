@@ -18,20 +18,6 @@ As an avid motorist and atypical professional questioner that like to ask "why? 
 
 Data is derived from the Australian Bureau Statistics dataset in order to illustrate the relationship between owning the motor vechicles and your average personal Income within the state. On the side notes, you can also see the data spans between January 2016 and 31 December 2021.
 
-## **Project Parts:**
-(1) Background Images: \
-\
-(2) Content:\
-(2a) index.html\
-\
-(2b) assets/css/d3Style.css\
-(2c) assets/css/style.css\
-\
-(2d) assets/data/data.csv\
-\
-(2e) assets/js/.eslintrc.json\
-(2f) assets/js/app.js
-
 ## Approach
 1. Identify data sources and dependencies
 2. Collect and clean trajectory data
@@ -50,11 +36,6 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 - [ABS employee earnings](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2021#data-download)
 - [ABS motor vehicles census](https://www.abs.gov.au/statistics/industry/tourism-and-transport/motor-vehicle-census-australia/31-jan-2021#data-download)
 
-## **Project Charter:**
-(1) Display script from repository\
-\
-(2) Display website 
-
 ## **Coding Languages:**
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -67,7 +48,6 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 
 ## **Platform:**
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
 ## **IDE:**
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
