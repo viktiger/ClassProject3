@@ -73,8 +73,11 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ## Limitations, Assumptions & Challenges
-- Limited time of project
-
+- Vehicle registers and the average income dataset could be skewed and biased due to inclusion of data such as a person owning a car without income (i.e, students, dependant child with parental support)
+- Due to covid, the supply chain has been impacted which caused the data to be skewed as secondhand car’s price rose to similar level as firsthand
+- Car registration can be transferred hence the data may not show the full picture of the increase in the new registeration holders
+- Data has been adjusted to be an average based on population size with an exception of the total car sales per brands
+- Restriction time to complete the project
 
 ## **Observations:**
 Lorem Ipsum
