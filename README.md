@@ -52,20 +52,30 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 ![Visual Studio Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=for-the-badge&logo=visual%20studio%20code&logoColor=white)
 
 ## **Limitations, Assumptions & Challenges:**
+- Car registration can be transferred hence the data may not show the full picture of the increase in the new registeration holders
+- Data does not distinguish car owners vs. car leases or individuals vs. companies
+- Data has been adjusted to be an average based on population size with an exception of the total car sales per brands
 - Vehicle registers and the average income dataset could be skewed and biased due to inclusion of data such as a person owning a car without income (i.e, students, dependant child with parental support)
 - Due to covid, the supply chain has been impacted which caused the data to be skewed as secondhand car’s price rose to similar level as firsthand
-- Car registration can be transferred hence the data may not show the full picture of the increase in the new registeration holders
-- Data has been adjusted to be an average based on population size with an exception of the total car sales per brands
-- Restriction time to complete the project
+- Restricted timeframe to complete project 3*
 
 ## **Visualizations & Analysis:**
 ![CHART1](image/averageregisteredvehiclesbystate.png)
 ![CHART2](image/registeredvehicles.png)
 ![CHART3](image/vehiclesageused.png)
 ![CHART4](image/weeklyincome.png)
+![CHART5](image/averageincomeregistrationage.png)
 
 ## **Observations:**
-Lorem Ipsum
+- Victoria has the most represented cross section of Australia. 
+- Average income is increasing annually across each Australia except for Northern Territory
+- Tasmanian’s have the longest age used for cars 
+- Campervan age of use is highest in Western Australia, South Australia, Tasmania
+- Australia’s favourite car brands in descending order: Toyota, Holden, Ford. 
+- ACT has the highest average income and shortest years of use of car
+- Big Corp – invest in this market
+- Small Car Thief – this da place 2 be
+
 
 ## **Website Design:**
 This application includes 3 responsive webpages with dynamic navigation built using HTML, CSS, and using bootstrap .
