@@ -79,6 +79,9 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 ## **Observations:**
 Lorem Ipsum
 
+## **Website Design:**
+This application includes 3 responsive webpages with dynamic navigation built using HTML, CSS, and using bootstrap .
+
 ## **Project Authors:**
 Authors:
 
