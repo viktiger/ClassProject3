@@ -16,7 +16,7 @@ As an avid motorist and atypical professional questioner that like to ask "why? 
 ![bmw](https://aleen42.github.io/badges/src/bmw.svg)
 
 
-Data is derived from the Australian Bureau Statistics dataset in order to illustrate the relationship between owning the motor vechicles and your average personal Income within the state. On the side notes, you can also see the data spans between January 2016 and 31 December 2021.
+Data is derived from the Australian Bureau Statistics dataset in order to illustrate the relationship between owning the motor vechicles and your average personal Income within the state. On the side notes, you can also see the data spans between 2016 to 2021.
 
 ## Approach
 1. Identify data sources and dependencies
@@ -32,7 +32,7 @@ Data is derived from the Australian Bureau Statistics dataset in order to illust
 ![ETL](image/project3.png)
 
 ## **Data Sources:**
-Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
+Data is derived from the ABS. Data spans 2016 till 2021. 
 - [ABS employee earnings](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/may-2021#data-download)
 - [ABS motor vehicles census](https://www.abs.gov.au/statistics/industry/tourism-and-transport/motor-vehicle-census-australia/31-jan-2021#data-download)
 - [ABS Australian population](https://www.abs.gov.au/statistics/people/population/national-state-and-territory-population/sep-2021)
