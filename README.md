@@ -62,7 +62,7 @@ Data is derived from the ABS. Data spans 1 January 2018 and 29 January 2020.
 ## **Visualizations & Analysis:**
 ![CHART1](image/averageregisteredvehiclesbystate.png)
 ![CHART2](image/registeredvehicles.png)
-![CHART3](image/vehiclesageused.png)
+![CHART3](image/vehiclestypebasedonageused.png)
 ![CHART4](image/weeklyincome.png)
 ![CHART5](image/averageincomeregistrationage.png)
 
